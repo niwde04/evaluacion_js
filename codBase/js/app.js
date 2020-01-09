@@ -1,4 +1,9 @@
-
+var a =0;
+var b =0;
+var c =0;
+var flag = 0;
+var operacion;
+var total=0;
 
 function init(){
 
@@ -19,7 +24,8 @@ function init(){
     var  punto =document.getElementById('punto');
     var  on =document.getElementById('on');
     var  signo =document.getElementById('sign');
- 
+    var  suma =document.getElementById('mas');
+    var  root =document.getElementById('raiz');
     //eventos click
 
         uno.onclick = function(e){
@@ -131,22 +137,121 @@ function init(){
 
             
         }
-        on.onclick = function(e){
-           
-           
-            display.textContent =  "0";
+
+        igual.onclick = function(e){
+            b = display.textContent;
             
+            if (flag == 0){
+                    flag=1
+                    c=b
+
+            }
+
+            resolver();
+        }
+      
+
+        punto.onclick = function(e){
 
             
+                    console.log(display.textContent.indexOf("."));
+                    
+                    var n = display.textContent.indexOf(".")
+
+                if (n== -1){
+                    
+                    if  (display.textContent.length <8 ) {
+                    
+                        display.textContent = display.textContent + ".";
+                            
+                }
+            }
         }
 
 
+
+        on.onclick = function(e){
+           
+            display.textContent =   0;
+          
+        }
+
+        sign.onclick = function(e){
+           
+            display.textContent =   display.textContent * -1;
+          
+        }
+
+        suma.onclick = function(e){
+            a = display.textContent;
+            operacion = "+";
+            limpiar();
+        }
+
+        resta.onclick = function(e){
+            a = display.textContent;
+            operacion = "-";
+            limpiar();
+        }
+
+        multiplicacion.onclick = function(e){
+            a = display.textContent;
+            operacion = "*";
+            limpiar();
+        }
+
+        division.onclick = function(e){
+            a = display.textContent;
+            operacion = "/";
+            limpiar();
+        }
+      
+        root.onclick = function(e){
+                       
+          a=  display.textContent = Math.sqrt( parseFloat(display.textContent));
+            display.textContent= a.toString().substring(0,8);
+            
+        }
+
     
-     
-
-
-
-
-
 
 }
+
+
+function resolver(){
+    var res = 0;
+    switch(operacion){
+      case "+":
+        res = parseFloat(a) + parseFloat(b);
+        break;
+      case "-":
+          res = parseFloat(a) - parseFloat(b);
+          break;
+      case "*":
+        res = parseFloat(a) * parseFloat(b);
+        break;
+      case "/":
+        res = parseFloat(a) / parseFloat(b);
+        break;
+   }
+    resetear();
+    display.textContent = res.toString().substring(0,8);
+
+}
+
+
+function limpiar()
+{
+    display.textContent = "";
+}
+
+function resetear(){
+  
+  //a = 0;
+  //b = 0;
+  //operacion = "";
+  //display.textContent = "";
+
+}
+
+
