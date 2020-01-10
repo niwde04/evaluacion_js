@@ -3,7 +3,7 @@ var b =0;
 var c =0;
 var flag = 0;
 var operacion;
-var total=0;
+
 
 function init(){
 
@@ -141,13 +141,14 @@ function init(){
         igual.onclick = function(e){
             b = display.textContent;
             
-            if (flag == 0){
-                    flag=1
-                    c=b
+            resolver();
 
+            if (flag == 0){
+                    flag=1;
+                    c=b;
             }
 
-            resolver();
+            
         }
       
 
@@ -172,6 +173,8 @@ function init(){
 
         on.onclick = function(e){
            
+         
+            resetear();
             display.textContent =   0;
           
         }
@@ -184,24 +187,28 @@ function init(){
 
         suma.onclick = function(e){
             a = display.textContent;
+            flag=0;
             operacion = "+";
             limpiar();
         }
 
         resta.onclick = function(e){
             a = display.textContent;
+            flag=0;
             operacion = "-";
             limpiar();
         }
 
         multiplicacion.onclick = function(e){
             a = display.textContent;
+            flag=0;
             operacion = "*";
             limpiar();
         }
 
         division.onclick = function(e){
             a = display.textContent;
+            flag=0;
             operacion = "/";
             limpiar();
         }
@@ -222,19 +229,50 @@ function resolver(){
     var res = 0;
     switch(operacion){
       case "+":
-        res = parseFloat(a) + parseFloat(b);
-        break;
+          if (flag==1){
+            res = parseFloat(c) + parseFloat(b);
+            break;}
+            
+            else
+            {
+            res = parseFloat(a) + parseFloat(b);
+            break;
+        }
+
+          
+       
       case "-":
-          res = parseFloat(a) - parseFloat(b);
-          break;
+        if (flag==1){
+            res = parseFloat(b) - parseFloat(c);
+            break;}
+            
+            else
+            {
+            res = parseFloat(a) - parseFloat(b);
+            break;
+        }
       case "*":
-        res = parseFloat(a) * parseFloat(b);
-        break;
+        if (flag==1){
+            res = parseFloat(c) * parseFloat(b);
+            break;}
+            
+            else
+            {
+            res = parseFloat(a) * parseFloat(b);
+            break;
+        }
       case "/":
-        res = parseFloat(a) / parseFloat(b);
-        break;
+        if (flag==1){
+            res = parseFloat(b) / parseFloat(c);
+            break;}
+            
+            else
+            {
+            res = parseFloat(a) / parseFloat(b);
+            break;
+        }
    }
-    resetear();
+    
     display.textContent = res.toString().substring(0,8);
 
 }
@@ -247,10 +285,11 @@ function limpiar()
 
 function resetear(){
   
-  //a = 0;
-  //b = 0;
-  //operacion = "";
-  //display.textContent = "";
+  a = 0;
+  b = 0;
+  operacion = "";
+  display.textContent = "";
+  flag=0
 
 }
 
