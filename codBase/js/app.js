@@ -95,7 +95,6 @@
                 display.textContent = display.textContent + "1";
                 }
            }
-    
             dos.onclick = function(e){
                
                 if (display.textContent=='0'){
